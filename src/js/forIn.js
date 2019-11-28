@@ -1,6 +1,7 @@
 const obj = {name: 'мечник', health: 10, level: 2, attack: 80, defence: 40}
 let orderArr = {};
 let finalArr = [];
+let abcArr = [];
 
 function orderByProps(obj, arr) {
     for (let property in obj) {
@@ -13,14 +14,25 @@ function orderByProps(obj, arr) {
       }
     }
 
-    obj = Object.assign(orderArr, obj);
-    
-    for (let item in obj) {
-      finalArr.push({key: item, value: obj[item]});
+    for (let order in orderArr) {
+      finalArr.push({key: order, value: orderArr[order]});
+    }
 
+    for (let abc in obj) {
+      abcArr.push({key: abc, value: obj[abc]});
+      abcArr.sort(function(a, b){
+        let nameA=a.key.toLowerCase(), nameB=b.key.toLowerCase()
+        if (nameA < nameB)
+          return -1
+        if (nameA > nameB)
+          return 1
+        return 0
+        })
     }
     
-    return finalArr;
+    obj = finalArr.concat(abcArr);
+    
+    return obj;
 
 }    
 
