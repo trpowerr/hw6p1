@@ -1,28 +1,26 @@
 const obj = {name: 'мечник', health: 10, level: 2, attack: 80, defence: 40}
-let orderArr = [];
-let finalArr = {};
+let orderArr = {};
+let finalArr = [];
 
 function orderByProps(obj, arr) {
     for (let property in obj) {
       for (let prop in arr) {
           let item = arr[prop];
           if (property == item) {
-            finalArr.key = property;
-            console.log(typeof finalArr.key);
-            finalArr.value = obj[property];
-            console.log(typeof obj[property]);
-            console.log(finalArr);
-            // orderArr.push(finalArr);
-            // console.log(orderArr);
+            orderArr[property] = obj[property];
             delete obj[property];
-          } 
-        }
+          }
+      }
+    }
+
+    obj = Object.assign(orderArr, obj);
+    
+    for (let item in obj) {
+      finalArr.push({key: item, value: obj[item]});
+
     }
     
-
-    obj = Object.assign(finalArr, obj);
-
-    return obj;
+    return finalArr;
 
 }    
 
