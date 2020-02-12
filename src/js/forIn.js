@@ -36,4 +36,4 @@ function orderByProps(obj, arr) {
 
 }    
 
-console.log(orderByProps(obj, ['name','level']));
+export const arr = orderByProps(obj, ['name','level']);
